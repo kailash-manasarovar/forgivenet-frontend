@@ -11,7 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "browserify": "^16.5.0",
-    "lite-server": "^2.5.4",
     "web3": "^1.2.4"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1"
   }
 }
