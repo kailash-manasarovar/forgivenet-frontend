@@ -130,7 +130,7 @@ App = {
             return false;
         }
 
-        if (donation.value <= 0.0024)
+        if (donation.value <= 0.00044)
         {
             window.alert("A little more ETH please.");
             donation.focus();
@@ -158,7 +158,7 @@ App = {
         var donation = document.getElementById("donation").value;
         var weiValue = web3.utils.toWei(donation);
 
-        myContract.methods.requestForgiveness(requestText).send({ from: address, value: weiValue, gas:100000 }).
+        myContract.methods.requestForgiveness(requestText).send({ from: address, value: weiValue /*gas:100000*/ }).
             on('transactionHash', function(hash){
                 console.log(hash);
               // document.getElementById("result").innerHTML = "'<a href=https://rinkeby.etherscan.io/tx/' + hash + '</a>'";
