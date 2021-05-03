@@ -1,5 +1,6 @@
 const abi = [{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_from","type":"address"},{"indexed":false,"internalType":"address","name":"_to","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":false,"internalType":"string","name":"data","type":"string"},{"indexed":false,"internalType":"uint256","name":"donation","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"RequestMade","type":"event"},{"constant":false,"inputs":[],"name":"acceptOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"addr","type":"address"}],"name":"addEthReceivingAccount","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"ercTokenAddress","type":"address"}],"name":"addToken","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getDisincentive","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"newOwner","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"string","name":"forgiveness_request","type":"string"}],"name":"requestForgiveness","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"number","type":"uint256"}],"name":"setDisincentiveInWei","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"_newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]
-// RINKEBY const deployedAddress = "0x338F028Ca759C41787426521787557a887365eA0";
+// ROPSTEN const deployedAddress =
+//RINKEBY const deployedAddress = "0x338F028Ca759C41787426521787557a887365eA0";
 // MAINNET
 const deployedAddress = "0xf9262f3fFFf92e6d8e4a3b59AcB4DFCcAe160878";
 
@@ -143,7 +144,7 @@ App = {
 
   requestForgiveness: function() {
 
-	   	ethereum.enable(); 
+	   	ethereum.enable();
 
         //console.log(address);
         //console.log(myContract);
@@ -158,7 +159,7 @@ App = {
         var donation = document.getElementById("donation").value;
         var weiValue = web3.utils.toWei(donation);
 
-        myContract.methods.requestForgiveness(requestText).send({ from: address, value: weiValue /*gas:100000*/ }).
+        myContract.methods.requestForgiveness(requestText).send({ from: address, gas:1000000, value: weiValue }).
             on('transactionHash', function(hash){
                 console.log(hash);
               // document.getElementById("result").innerHTML = "'<a href=https://rinkeby.etherscan.io/tx/' + hash + '</a>'";
