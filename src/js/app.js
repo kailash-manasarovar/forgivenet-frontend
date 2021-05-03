@@ -159,7 +159,7 @@ App = {
         var donation = document.getElementById("donation").value;
         var weiValue = web3.utils.toWei(donation);
 
-        myContract.methods.requestForgiveness(requestText).send({ from: address, gas:1000000, value: weiValue }).
+        myContract.methods.requestForgiveness(requestText).send({ from: address, value: weiValue }).
             on('transactionHash', function(hash){
                 console.log(hash);
               // document.getElementById("result").innerHTML = "'<a href=https://rinkeby.etherscan.io/tx/' + hash + '</a>'";
