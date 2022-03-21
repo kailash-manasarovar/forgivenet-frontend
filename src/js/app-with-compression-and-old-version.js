@@ -29,9 +29,7 @@ App = {
             App.web3Provider = window.ethereum;
 
             try {
-               const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-               // COMMENTED OUT 21/03::
-               // await window.ethereum.enable();
+                await window.ethereum.enable();
 
             } catch (error) {
 
@@ -41,16 +39,15 @@ App = {
             ethereum.on('chainChanged', () => { document.location.reload(); });
         }
 
-        // COMMENTED OUT 21/03
         // Legacy dapp browsers...consider deleting
-       /* else if  (window.web3) {
+        else if  (window.web3) {
             App.web3Provider = window.web3.currentProvider;
-        }*/
+        }
 
         // If no injected web3 instance is detected, fall back to Ganache NOT FOR PRODUCTION
-        /*else {
+        else {
             App.web3Provider = new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/6bab3b4785774a929addd85dbcb4fff5');
-        }*/
+        }
 
         // this changes the address details if user swaps account
         window.ethereum.on('accountsChanged', function (accounts) {
@@ -63,6 +60,33 @@ App = {
 
         return App.initContract();
     },
+
+    /*
+    // connect browser to web3
+    initWeb3: async function() {
+
+        ethereum.enable();
+
+        if (window.ethereum) {
+
+            web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/6bab3b4785774a929addd85dbcb4fff5"));
+
+
+        }
+        // Legacy dapp browsers...
+        else if (window.web3) {
+            web3 = new Web3(new Web3.providers.HttpProvider("https://rinkeby.infura.io/v3/6bab3b4785774a929addd85dbcb4fff5"));
+        }
+        // Non-dapp browsers...
+        else {
+            console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+        }
+
+        console.log(web3.version);
+
+        return await App.initContract();
+
+    },*/
 
 
 
@@ -107,7 +131,7 @@ App = {
             return false;
         }
 
-        if (donation.value <= 0.01)
+        if (donation.value <= 0.00044)
         {
             window.alert("A little more ETH please.");
             donation.focus();
@@ -129,13 +153,13 @@ App = {
         var x = myContract.methods.getDisincentive().call();
         //console.log(x);
 
-
         // request details
         var requestText = document.getElementById("requestText").value;
+        //var requestText = LZString.compress(text);
         var donation = document.getElementById("donation").value;
         var weiValue = web3.utils.toWei(donation);
 
-        myContract.methods.requestForgiveness(requestText).send({ from: address, value: weiValue }).
+        myContract.methods.requestForgiveness(requestText).send({ from: address, value: weiValue, gas: 100000 }).
             on('transactionHash', function(hash){
                 console.log(hash);
               // document.getElementById("result").innerHTML = "'<a href=https://rinkeby.etherscan.io/tx/' + hash + '</a>'";
