@@ -1,6 +1,4 @@
 const abi = [{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_from","type":"address"},{"indexed":false,"internalType":"address","name":"_to","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":false,"internalType":"string","name":"data","type":"string"},{"indexed":false,"internalType":"uint256","name":"donation","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"RequestMade","type":"event"},{"constant":false,"inputs":[],"name":"acceptOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"addr","type":"address"}],"name":"addEthReceivingAccount","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"ercTokenAddress","type":"address"}],"name":"addToken","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getDisincentive","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"newOwner","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"string","name":"forgiveness_request","type":"string"}],"name":"requestForgiveness","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"number","type":"uint256"}],"name":"setDisincentiveInWei","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"_newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]
-// ROPSTEN const deployedAddress =
-//RINKEBY const deployedAddress = "0x338F028Ca759C41787426521787557a887365eA0";
 // MAINNET
 const deployedAddress = "0xf9262f3fFFf92e6d8e4a3b59AcB4DFCcAe160878";
 
@@ -20,9 +18,6 @@ App = {
     // connect browser to web3
     initWeb3: async function() {
 
-        // silence warning - remove 14 Jan
-        //ethereum.autoRefreshOnNetworkChange = false; // commented out 2/2/20 in attempt to fix status.im error
-
         // Modern dapp browsers...
         if (window.ethereum) {
 
@@ -30,32 +25,18 @@ App = {
 
             try {
                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-               // COMMENTED OUT 21/03::
-               // await window.ethereum.enable();
 
-            } catch (error) {
-
-                console.error("User denied account access");
+            } catch (err) {
+                console.error("Failed with error: " + err);
             }
 
             ethereum.on('chainChanged', () => { document.location.reload(); });
         }
 
-        // COMMENTED OUT 21/03
-        // Legacy dapp browsers...consider deleting
-       /* else if  (window.web3) {
-            App.web3Provider = window.web3.currentProvider;
-        }*/
-
-        // If no injected web3 instance is detected, fall back to Ganache NOT FOR PRODUCTION
-        /*else {
-            App.web3Provider = new Web3.providers.HttpProvider('https://rinkeby.infura.io/v3/6bab3b4785774a929addd85dbcb4fff5');
-        }*/
-
         // this changes the address details if user swaps account
         window.ethereum.on('accountsChanged', function (accounts) {
             App.address = accounts[0];
-            console.log(App.address);
+            // console.log(App.address);
             document.location.reload();
         });
 
@@ -65,20 +46,12 @@ App = {
     },
 
 
-
     initContract: async function() {
 
         myContract = new web3.eth.Contract(abi, deployedAddress);
         address = myContract.givenProvider.selectedAddress;
-        //console.log(myContract);
-        //console.log(address);
-
-       // var x = myContract.methods.getDisincentive().call();
-       // console.log(x);
 
     },
-
-
 
 
     validateInput: function() {
@@ -120,15 +93,9 @@ App = {
 
   requestForgiveness: function() {
 
-	   	ethereum.enable();
-
-        //console.log(address);
-        //console.log(myContract);
-
         // test methods
-        var x = myContract.methods.getDisincentive().call();
-        //console.log(x);
-
+        // var x = myContract.methods.getDisincentive().call();
+        // console.log(x);
 
         // request details
         var requestText = document.getElementById("requestText").value;
