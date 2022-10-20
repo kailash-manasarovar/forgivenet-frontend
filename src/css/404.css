@@ -8,3 +8,9 @@ body > main > center > h1 {
     font-size: 48px;
 }
 
+a {
+    font-family: sans-serif;
+    color: #337ab7;
+    font-size: 33px;
+}
+
