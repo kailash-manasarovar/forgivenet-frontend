@@ -84,7 +84,8 @@ App = {
             return false;
         }
 
-        if (donation.value < 0.000001)
+        /* testing value: if (donation.value < 0.000001) */
+        if (donation.value <= 0.01)
         {
             window.alert("A little more ETH please.");
             donation.focus();
