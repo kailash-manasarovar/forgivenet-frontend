@@ -4,11 +4,7 @@
 .idea/*
 node_modules/*
 build/*
-<<<<<<< HEAD
-migrations/
-=======
 migrations/*
-<<<<<<< Updated upstream
-=======
->>>>>>> a9251e734659d708ce8d0e94dd56baa46d2a0530
->>>>>>> Stashed changes
+
+
+
