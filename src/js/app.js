@@ -1,10 +1,10 @@
 const abi = [{"anonymous":false,"inputs":[{"indexed":false,"internalType":"address","name":"_from","type":"address"},{"indexed":false,"internalType":"address","name":"_to","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":false,"internalType":"string","name":"data","type":"string"},{"indexed":false,"internalType":"uint256","name":"donation","type":"uint256"},{"indexed":false,"internalType":"uint256","name":"timestamp","type":"uint256"}],"name":"RequestMade","type":"event"},{"constant":false,"inputs":[],"name":"acceptOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"addr","type":"address"}],"name":"addEthReceivingAccount","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"ercTokenAddress","type":"address"}],"name":"addToken","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"getDisincentive","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"newOwner","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"internalType":"string","name":"forgiveness_request","type":"string"}],"name":"requestForgiveness","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[{"internalType":"uint256","name":"number","type":"uint256"}],"name":"setDisincentiveInWei","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"address","name":"_newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"}]
 // GOERLI
-// const deployedAddress = "0xD69D780C017656C15A235b2F8fFaC65a469F8B34";
+const deployedAddress = "0xD69D780C017656C15A235b2F8fFaC65a469F8B34";
 // SEPOLIA
 // const deployedAddress = "0x9BA081fA6612456EBba531c95A23d2CC6004190D";
 // MAINNET
-const deployedAddress = "0xf9262f3fFFf92e6d8e4a3b59AcB4DFCcAe160878";
+// const deployedAddress = "0xf9262f3fFFf92e6d8e4a3b59AcB4DFCcAe160878";
 
 var myContract;
 var address;
@@ -84,8 +84,8 @@ App = {
             return false;
         }
 
-        /* testing value: if (donation.value < 0.000001) */
-        if (donation.value <= 0.01)
+        if (donation.value < 0.000001)
+        /* PRODUCTION if (donation.value <= 0.01) */
         {
             window.alert("A little more ETH please.");
             donation.focus();
@@ -110,12 +110,28 @@ App = {
 
         myContract.methods.requestForgiveness(requestText).send({ from: address, value: weiValue }).
             on('transactionHash', function(hash){
-                url = 'https://etherscan.io/tx/' + hash;
+                url = 'https://goerli.etherscan.io/tx/' + hash;
+                /* PRODUCTION url = 'https://etherscan.io/tx/' + hash; */
                 document.getElementById('requestText').value = "Be patient...";
             })
             .on('confirmation', function(confNumber, receipt, latestBlockHash) {
-                document.getElementById('requestText').value = "Success!! Click the link below to see your confirmation on Etherscan.";
-                document.getElementById("result").innerHTML = '<a href="' + url + ' " target="_blank">Latest forgiveness request confirmation</a>';
+                modal = document.getElementById("myModal");
+                modal.style.display = "block";
+                span = document.getElementsByClassName("close")[0];
+                modalText = document.getElementById('modal-text');
+                modalText.innerHTML = 'Success!' + '<br/>' + '<a href="' + url + ' " target="_blank">Your forgiveness request confirmation on Etherscan.</a>';
+                span.onclick = function () {
+                    modal.style.display = "none";
+                    location.reload();
+                }
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                        location.reload();
+                    }
+                }
+                //document.getElementById('modal-text').innerHTML = "Success!! Click the '<a href=\"' + url + ' \" target=\"_blank\">Latest forgiveness request confirmation</a>' to see your confirmation on Etherscan.";
+                //document.getElementById("result").innerHTML = '<a href="' + url + ' " target="_blank">Latest forgiveness request confirmation</a>';
            });
     }
 
