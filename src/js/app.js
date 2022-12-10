@@ -110,13 +110,27 @@ App = {
 
         myContract.methods.requestForgiveness(requestText).send({ from: address, value: weiValue }).
             on('transactionHash', function(hash){
-                url = 'https://etherscan.io/tx/' + hash;
+                /* TEST GOERLI url = 'https://goerli.etherscan.io/tx/' + hash; */
+                url = 'https://etherscan.io/tx/' + hash; 
                 document.getElementById('requestText').value = "Be patient...";
             })
             .on('confirmation', function(confNumber, receipt, latestBlockHash) {
-                document.getElementById('requestText').value = "Success!! Click the link below to see your confirmation on Etherscan.";
-                document.getElementById("result").innerHTML = '<a href="' + url + ' " target="_blank">Latest forgiveness request confirmation</a>';
-           });
+                modal = document.getElementById("myModal");
+                modal.style.display = "block";
+                span = document.getElementsByClassName("close")[0];
+                modalText = document.getElementById('modal-text');
+                modalText.innerHTML = 'Success!' + '<br/>' + '<a href="' + url + ' " target="_blank">Your forgiveness request confirmation on Etherscan.</a>';
+                span.onclick = function () {
+                    modal.style.display = "none";
+                    location.reload();
+                }
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                        location.reload();
+                    }
+                }
+          });
     }
 
 };
