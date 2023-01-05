@@ -110,6 +110,7 @@ App = {
 
         myContract.methods.requestForgiveness(requestText).send({ from: address, value: weiValue }).
             on('transactionHash', function(hash){
+<<<<<<< HEAD
                 url = 'https://goerli.etherscan.io/tx/' + hash;
                 /* PRODUCTION url = 'https://etherscan.io/tx/' + hash; */
                 document.getElementById('requestText').value = "Be patient...";
@@ -130,9 +131,13 @@ App = {
                         location.reload();
                     }
                 }
+<<<<<<< HEAD
                 //document.getElementById('modal-text').innerHTML = "Success!! Click the '<a href=\"' + url + ' \" target=\"_blank\">Latest forgiveness request confirmation</a>' to see your confirmation on Etherscan.";
                 //document.getElementById("result").innerHTML = '<a href="' + url + ' " target="_blank">Latest forgiveness request confirmation</a>';
            });
+=======
+          });
+>>>>>>> mainnet
     }
 
 };
