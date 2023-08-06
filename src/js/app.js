@@ -53,7 +53,7 @@ App = {
     initContract: async function() {
 
         myContract = new web3.eth.Contract(abi, deployedAddress);
-        address = myContract.givenProvider.selectedAddress;
+        address = web3.currentProvider.selectedAddress;
 
     },
 
@@ -101,8 +101,7 @@ App = {
         // request details
         var requestText = document.getElementById("requestText").value;
         var donation = document.getElementById("donation").value;
-        var weiValue = web3.utils.toWei(donation);
-
+        var weiValue = web3.utils.toWei(donation, 'ether');
 
         myContract.methods.requestForgiveness(requestText).send({ from: address, value: weiValue }).
             on('transactionHash', function(hash){
