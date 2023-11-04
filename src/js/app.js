@@ -106,7 +106,7 @@ App = {
 
         myContract.methods.requestForgiveness(requestText).send({ from: address, value: weiValue }).
             on('transactionHash', function(hash){
-                url = 'https://goerli.etherscan.io/tx/' + hash; 
+                url = 'https://etherscan.io/tx/' + hash; 
                 document.getElementById('requestText').value = "Be patient...";
             })
             .on('confirmation', function(confNumber, receipt, latestBlockHash) {
