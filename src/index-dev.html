@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self'">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="Mine FRGVN crytpo tokens by requesting forgiveness. Help build a new world based on love, kindness, and humility.">
+	<meta name="author" content="Dr Jacqueline K Chardwood">
+	
+    <title>forgivenet: the world's first spiritual tech</title>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org/",
+            "@type": "Currency",
+            "name": "forgivenet",
+            "image": "https://1frgvn.com/frgvn-symbol.png",
+            "description": "Mine FRGVN crytpo tokens by requesting forgiveness. Help build a new world based on love for each other, kindness and humility for ourselves.",
+            "brand": {
+                "@type": "Brand",
+                "name": "1FRGVN"
+            }
+        }
+    </script>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@1FRGVN">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://1frgvn.com/">
+    <meta property="og:title" content="forgivenet: the world's first spiritual tech">
+    <meta property="og:description" content="Mine FRGVN crytpo tokens by requesting forgiveness. Help build a new world based on love, kindness, and humility.">
+    <meta property="og:image" content="https://1frgvn.com/lion-and-lamb.jpg">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="css/extra.css" rel="stylesheet">
+
+    <!-- favicon -->
+    <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+
+    <!-- canonical -->
+    <link rel="canonical" href="https://1frgvn.com/"/>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-132413978-1"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','UA-132413978-1');</script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RZ0G9CXXKR"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-RZ0G9CXXKR');</script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 center-block">
+            <h1 class="text-center">Request forgiveness</h1>
+            <hr/>
+            <div class="panel-info"><center>Make sure you're logged into <a href="https://metamask.io" target="_blank">MetaMask</a> and have some ETH in your account.</center>
+                <div class="panel-info" style="color: gray; font-style: italic"><center><a href="https://medium.com/@forgivenet/forgivenet-quick-start-guide-7a46a1ea4ce0" target="_blank">Quick start guide</a>.</center>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 center-block">
+
+
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-8 center-block">
+                            <div class="panel panel-default panel-primary">
+                                <div class="panel-heading">Input your forgiveness request and click Send Request</div>
+                                <div class="panel-body">
+
+                                    <form name="request-form">
+                                        <div class="form-group">
+                                            <label for="requestText">Request</label>
+                                            <div class="panel-info">Keep your request between 500 and 2000 characters. <a href="https://ethproductions.github.io/bytes/" target="_blank">Check length</a>.
+                                            </div>
+                                            <textarea name="requestText" class="form-control" id="requestText" rows="10" cols="50" placeholder="HOUSE SUGGESTION:
+
+Dear Crytpo Enthusiasts
+
+It's just too easy to make ridiculous amounts of money doing nothing worthwhile or valuable in the world.
+
+It seemed to us like everyone had gone mad and who wouldn't take advantage of that?
+
+We didn't realize how much we were hurting people or how many.
+
+Honestly, we were completely ignorant about the consequences of our childish activity aside from enriching ourselves.
+
+We're so sorry for scamming you.
+
+Please forgive us.
+
+My Crypto Scam Company [INSERT NAME HERE]"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="donation">Donation</label>
+                                            <div class="panel-info">We add a little extra to the gas price to disincentivize bad behavior. You are welcome to donate more. Input your donation in ETH
+                                            </div>
+
+                                            <input type="number" class="form-control" id="donation" name="donation" placeholder="Minimum donation 0.0123 ETH"> <!--placeholder="Current minimum spend is: "-->
+
+                                        </div>
+                                        <!-- <button type="button" class="btn btn-default" onclick="App.requestForgiveness();return false;">-->
+
+                                        <button type="button" class="btn btn-default" onclick="App.validateInput();return false;">
+
+                                            Send Request
+                                        </button>
+                                        <div class="panel-info">By clicking Send Request, you agree to our <a href="./content/terms.pdf" target="_blank">Terms</a>.</div>
+                                    </form>
+
+                                </div>
+                                <div class="panel-footer" id="result">
+                                    <!--Result: success, your request is now on the blockchain. [link]-->
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+                <center>
+                <script>const BADGE_ID='de845ed4e5edab59';</script>
+                <script type="text/javascript" src="https://static.alchemyapi.io/scripts/badge/alchemy-badge.js"></script>
+                <a href="#">
+                    <img onclick=logBadgeClick() id="badge-button" style="width:240px;height:53px" src="https://static.alchemyapi.io/images/marketing/badgeLight.png" alt="Alchemy Supercharged"/>
+                </a>
+                </center>
+
+
+        </div>
+    </div>
+
+        <div id="footer">
+            <center>
+            <div class="container">
+                <p class="muted credit"> &#169; 2023 Nandi Niramisa & Co Limited &nbsp | &nbsp <a href="./content/pp.pdf" target="_blank">Privacy Policy</a> &nbsp | &nbsp <a href="./content/forgivenet-whitepaper.pdf" target="_blank">Whitepaper</a> </p>
+            </div>
+            </center>
+        </div>
+    </div>
+
+    <!--- MODAL ELEMENT -->
+    <div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div id="modal-text"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@v4.0.3/dist/web3.min.js"></script>
+
+</body>
+
+
+</html>
