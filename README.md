@@ -5,6 +5,10 @@ web3js frontend for Solidity forgiveness app running on the Ethereum blockchain.
 ## Develop branch
 
 This is the develop branch which currently reflects the `goerli` set up. However, we are working on making this the local dev branch. 
+It's a mess. 
+I was distracted by sedating crypto-tech-bro porn-addicts for a while there.
+Squirrel's gonna sort everything out for me shortly.
+Thank you dear squirrel <3
 
 ## Quick start
 
