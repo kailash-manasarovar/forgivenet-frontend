@@ -1,5 +1,8 @@
 # forgivenet-frontend
 
+<img width="992" height="1586" alt="cover (1)" src="https://github.com/user-attachments/assets/2248e4b9-4b1f-4bf3-87de-72eed9de2e6c" />
+https://fearandloathinginlasmarinas.com/
+
 web3js frontend for Solidity forgiveness app running on the Ethereum blockchain.
 
 ## Develop branch
